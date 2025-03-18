@@ -3,493 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>My Personal Website</title>
     <style>
-        /* Reset some default browser styles */
+        /* Color palette variables */
+        :root {
+            --color-1: #007F5F; /* Dark green */
+            --color-2: #2B9348;
+            --color-3: #55A630;
+            --color-4: #80B918;
+            --color-5: #AACC00;
+            --color-6: #BFD200;
+            --color-7: #D4D700;
+            --color-8: #DDDF00;
+            --color-9: #EEEF20;
+            --color-10: #FFFF3F; /* Bright yellow */
+            --text-dark: #333333;
+            --text-light: #FFFFFF;
+            --background-light: #F8FFF0;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        
-        :root {
-            /* Light mode colors */
-            --primary-color: #e8491d;
-            --header-bg: #35424a;
-            --text-color: #333;
-            --bg-color: #f4f4f4;
-            --card-bg: white;
-            --card-shadow: rgba(0, 0, 0, 0.1);
-            --footer-bg: #35424a;
-            --footer-text: white;
-            --form-border: #ddd;
-            
-            /* From the provided palette */
-            --palette-purple: #CDB4DB;
-            --palette-pink: #FFC8DD;
-            --palette-light-pink: #FFAFCC;
-            --palette-light-blue: #BDE0FE;
-            --palette-blue: #A2D2FF;
-        }
-        
-        [data-theme="dark"] {
-            /* Dark mode colors */
-            --primary-color: var(--palette-light-pink);
-            --header-bg: #1a1a1a;
-            --text-color: #f0f0f0;
-            --bg-color: #121212;
-            --card-bg: #2d2d2d;
-            --card-shadow: rgba(0, 0, 0, 0.3);
-            --footer-bg: #1a1a1a;
-            --footer-text: #f0f0f0;
-            --form-border: #444;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Arial', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-        }
-        
-        /* Container for all content */
-        .container {
-            width: 80%;
-            max-width: 1100px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        
-        /* Theme toggle switch */
-        .theme-switch-wrapper {
-            display: flex;
-            align-items: center;
-            margin-left: 20px;
-        }
-        
-        .theme-switch {
-            display: inline-block;
-            height: 24px;
-            position: relative;
-            width: 50px;
-        }
-        
-        .theme-switch input {
-            display: none;
-        }
-        
-        .slider {
-            background-color: #ccc;
-            bottom: 0;
-            cursor: pointer;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        
-        .slider:before {
-            background-color: white;
-            bottom: 4px;
-            content: "";
-            height: 16px;
-            left: 4px;
-            position: absolute;
-            transition: .4s;
-            width: 16px;
-            border-radius: 50%;
-        }
-        
-        input:checked + .slider {
-            background-color: var(--palette-blue);
-        }
-        
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        
-        .theme-icon {
-            margin-right: 10px;
-            font-size: 18px;
-        }
-        
-        /* Header styling */
-        header {
-            background-color: var(--header-bg);
-            color: white;
-            padding: 20px 0;
-            border-bottom: 3px solid var(--primary-color);
-        }
-        
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        header h1 {
-            margin: 0;
-        }
-        
-        header span {
-            color: var(--primary-color);
-        }
-        
-        /* Navigation menu */
-        nav {
-            display: flex;
-            align-items: center;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav li {
-            padding: 0 20px;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-        
-        nav a:hover {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
-        /* Hero section */
-        .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://picsum.photos/1500/500');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            color: white;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .hero h2 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 20px;
-            max-width: 600px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 18px;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: var(--header-bg);
-        }
-        
-        /* About section */
-        .about {
-            padding: 50px 0;
-            background-color: var(--card-bg);
-        }
-        
-        .about-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .about-text {
-            flex: 4;
-            padding-right: 30px;
-        }
-        
-        .about-image {
-            flex: 1;
-        }
-        
-        .about-image img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        
-        /* Projects section */
-        .projects {
-            padding: 50px 0;
-            background-color: var(--bg-color);
-            text-align: center;
-        }
-        
-        .projects h2 {
-            margin-bottom: 30px;
-        }
-        
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .project-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px var(--card-shadow);
-            transition: transform 0.3s;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .project-info {
             padding: 20px;
         }
         
-        /* Contact section */
-        .contact {
-            padding: 50px 0;
-            background-color: var(--card-bg);
-        }
-        
-        .contact h2 {
+        header {
             text-align: center;
-            margin-bottom: 30px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--color-1), var(--color-3));
+            color: var(--text-light);
+            border-radius: 12px;
+            margin-bottom: 40px;
         }
         
-        form {
-            max-width: 600px;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
         }
         
-        .form-group {
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--color-1);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Different border colors for each card */
+        .card:nth-child(1) { border-top-color: var(--color-1); }
+        .card:nth-child(2) { border-top-color: var(--color-2); }
+        .card:nth-child(3) { border-top-color: var(--color-3); }
+        .card:nth-child(4) { border-top-color: var(--color-4); }
+        .card:nth-child(5) { border-top-color: var(--color-5); }
+        .card:nth-child(6) { border-top-color: var(--color-6); }
+        
+        .card-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--color-1);
+        }
+        
+        /* Different title colors for each card */
+        .card:nth-child(1) .card-title { color: var(--color-1); }
+        .card:nth-child(2) .card-title { color: var(--color-2); }
+        .card:nth-child(3) .card-title { color: var(--color-3); }
+        .card:nth-child(4) .card-title { color: var(--color-4); }
+        .card:nth-child(5) .card-title { color: var(--color-5); }
+        .card:nth-child(6) .card-title { color: var(--color-6); }
+        
+        .card-description {
+            color: #666;
             margin-bottom: 20px;
         }
         
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--form-border);
-            border-radius: 5px;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-        }
-        
-        textarea {
-            height: 120px;
-        }
-        
-        /* Footer */
         footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
             text-align: center;
-            padding: 20px 0;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: var(--color-1);
+            font-weight: 500;
         }
         
-        /* Responsive styles */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Action indicator on hover */
+        .card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-8), var(--color-10));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            header .container {
-                flex-direction: column;
-                text-align: center;
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
             }
             
-            nav {
-                margin-top: 20px;
-                justify-content: center;
-                flex-direction: column;
+            h1 {
+                font-size: 2rem;
             }
             
-            .theme-switch-wrapper {
-                margin-top: 15px;
-                margin-left: 0;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-text {
-                padding-right: 0;
-                margin-bottom: 30px;
+            header {
+                padding: 30px 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header with Navigation -->
     <header>
-        <div class="container">
-            <h1><img src="https://media1.giphy.com/avatars/rmzcalli/LrdA3uznUXIW.gif" alt="SASBAN Logo" height="100"></h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="theme-switch-wrapper">
-                    <span class="theme-icon">☀️</span>
-                    <label class="theme-switch" for="checkbox">
-                        <input type="checkbox" id="checkbox" />
-                        <div class="slider"></div>
-                    </label>
-                    <span class="theme-icon">🌙</span>
-                </div>
-            </nav>
-        </div>
+        <h1>Welcome to My Website</h1>
+        <p class="subtitle">Explore different aspects of my life and interests</p>
     </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h2>Welcome to My Portfolio</h2>
-        <p>Hi! I'm a web developer passionate about creating beautiful and functional websites.</p>
-        <a href="#projects" class="btn">View My Work</a>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Hello! I'm a web developer with a passion for creating engaging digital experiences. I specialize in HTML, CSS, and JavaScript to build responsive and user-friendly websites.</p>
-                    <p>My journey in web development started when I realized the power of turning ideas into interactive applications that people can use. Since then, I've been continuously learning and improving my skills to create better web solutions.</p>
-                    <p>When I'm not coding, you can find me exploring new technologies, reading tech blogs, or enjoying nature walks to get fresh inspiration.</p>
+    
+    <div class="container">
+        <div class="card-grid">
+            <!-- Portfolio Card -->
+            <a href="portfolio.html" class="card">
+                <img src="/api/placeholder/600/400" alt="Portfolio" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">Portfolio</h2>
+                    <p class="card-description">Check out my professional work and projects</p>
                 </div>
-                <div class="about-image">
-                    <img src="https://sasban.online/sasban.jpg" alt="My Photo">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>My Projects</h2>
-            <p>Here are some of the projects I've worked on. Each represents a unique challenge and solution.</p>
+            </a>
             
-            <div class="project-grid">
-                <div class="project-card">
-                    <img src="https://picsum.photos/300/600" alt="Project 1">
-                    <div class="project-info">
-                        <h3>Project One</h3>
-                        <p>A responsive website for a local business. Built with HTML, CSS, and JavaScript.</p>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
+            <!-- Travel Card -->
+            <a href="travel.html" class="card">
+                <img src="/api/placeholder/600/400" alt="Travel" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">Travel</h2>
+                    <p class="card-description">Places I've been and adventures I've had</p>
                 </div>
-                
-                <div class="project-card">
-                    <img src="https://picsum.photos/600/500" alt="Project 2">
-                    <div class="project-info">
-                        <h3>Project Two</h3>
-                        <p>An interactive dashboard that visualizes data. Created using HTML, CSS, and JavaScript.</p>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
+            </a>
+            
+            <!-- Music Card -->
+            <a href="music.html" class="card">
+                <img src="/api/placeholder/600/400" alt="Music" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">Music</h2>
+                    <p class="card-description">My favorite artists, playlists and compositions</p>
                 </div>
-                
-                <div class="project-card">
-                    <img src="https://picsum.photos/900/300" alt="Project 3">
-                    <div class="project-info">
-                        <h3>Project Three</h3>
-                        <p>A personal blog template with a clean, minimal design. Built with HTML and CSS.</p>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
+            </a>
+            
+            <!-- Family Card -->
+            <a href="family.html" class="card">
+                <img src="/api/placeholder/600/400" alt="Family" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">Family</h2>
+                    <p class="card-description">Meet my family and our special moments</p>
                 </div>
-            </div>
+            </a>
+            
+            <!-- Museum Card -->
+            <a href="museum.html" class="card">
+                <img src="/api/placeholder/600/400" alt="Museum" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">Museum</h2>
+                    <p class="card-description">Art collections and museum visits I've enjoyed</p>
+                </div>
+            </a>
+            
+            <!-- Finance Card -->
+            <a href="finance.html" class="card">
+                <img src="/api/placeholder/600/400" alt="Finance" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">Finance</h2>
+                    <p class="card-description">Financial insights and resources I value</p>
+                </div>
+            </a>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <form>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Your Name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Your Email">
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" placeholder="Your Message"></textarea>
-                </div>
-                
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    </div>
+    
     <footer>
-        <div class="container">
-            <p>&copy; 2025 My Portfolio. All Rights Reserved.</p>
-        </div>
+        <p>&copy; 2025 My Personal Website. All rights reserved.</p>
     </footer>
-
-    <!-- JavaScript for theme toggle -->
-    <script>
-        // Check for saved theme preference or get OS preference
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const currentTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
-        
-        // Apply theme on page load
-        if (currentTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.getElementById('checkbox').checked = true;
-        }
-        
-        // Listen for toggle changes
-        const toggleSwitch = document.querySelector('#checkbox');
-        toggleSwitch.addEventListener('change', switchTheme);
-        
-        function switchTheme(e) {
-            if (e.target.checked) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-            }
-        }
-    </script>
 </body>
 </html>
