@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceTracker - Your Money Management Solution</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #0066cc;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #4caf50;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4caf50;
+        }
+        
+        .auth-buttons a {
+            background-color: #4caf50;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            margin-left: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .auth-buttons a:hover {
+            background-color: #43a047;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            background-color: #4caf50;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: #43a047;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-heading h2 {
+            font-size: 2.2rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .section-heading p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #e6f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: #1e3a8a;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+        }
+        
+        /* Dashboard Preview */
+        .dashboard-preview {
+            background-color: #eef2f7;
+            padding: 4rem 2rem;
+        }
+        
+        .dashboard-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .dashboard-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .dashboard-text h2 {
+            font-size: 2.2rem;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+        }
+        
+        .dashboard-text ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .dashboard-text ul li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .check-icon {
+            color: #4caf50;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .dashboard-image {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .dashboard-image img {
+            width: 100%;
+            display: block;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 2rem;
+        }
+        
+        .testimonial-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background-color: #eee;
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 4rem 2rem;
+            background-color: #f0f4f8;
+        }
+        
+        .pricing-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid #4caf50;
+            position: relative;
+        }
+        
+        .featured-label {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4caf50;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            font-weight: normal;
+            color: #666;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pricing-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: #1e3a8a;
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .pricing-button:hover {
+            background-color: #152b61;
+        }
+        
+        .featured .pricing-button {
+            background-color: #4caf50;
+        }
+        
+        .featured .pricing-button:hover {
+            background-color: #43a047;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 3rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.7rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #4caf50;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: #4caf50;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333;
+            color: #888;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <div class="logo">Finance<span>Tracker</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#">Log In</a>
+                <a href="#">Sign Up</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Take Control of Your Financial Future</h1>
+            <p>FinanceTracker provides smart tools for budgeting, investing, and achieving your financial goals.</p>
+            <a href="#" class="cta-button">Start For Free</a>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-heading">
+            <h2>Powerful Financial Tools</h2>
+            <p>Our comprehensive suite of tools helps you manage every aspect of your finances in one place.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">$</div>
+                <h3>Budget Tracking</h3>
+                <p>Create custom budgets, track expenses, and receive alerts when you're approaching limits.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">%</div>
+                <h3>Investment Portfolio</h3>
+                <p>Track your investments across multiple accounts with real-time data and performance analysis.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h3>Goal Planning</h3>
+                <p>Set financial goals and track your progress with customized plans and recommendations.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Financial Reports</h3>
+                <p>Generate detailed reports and visualizations to understand your financial health at a glance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Bank-Level Security</h3>
+                <p>Your financial data is protected with advanced encryption and security protocols.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Access</h3>
+                <p>Manage your finances on the go with our powerful mobile app for iOS and Android.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Dashboard Preview -->
+    <section class="dashboard-preview">
+        <div class="dashboard-content">
+            <div class="dashboard-text">
+                <h2>Intuitive Financial Dashboard</h2>
+                <p>Our powerful dashboard gives you a complete overview of your finances in one place, helping you make informed decisions.</p>
+                <ul>
+                    <li><span class="check-icon">✓</span> Real-time account balances and transactions</li>
+                    <li><span class="check-icon">✓</span> Customizable widgets for what matters most to you</li>
+                    <li><span class="check-icon">✓</span> Interactive charts and spending analysis</li>
+                    <li><span class="check-icon">✓</span> Bill payment reminders and upcoming expenses</li>
+                    <li><span class="check-icon">✓</span> Financial health score with improvement tips</li>
+                </ul>
+                <a href="#" class="cta-button">Try Dashboard Demo</a>
+            </div>
+            <div class="dashboard-image">
+                <img src="/api/placeholder/600/400" alt="Financial Dashboard Preview">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-heading">
+            <h2>What Our Users Say</h2>
+            <p>Join thousands of users who have transformed their financial lives with FinanceTracker.</p>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"FinanceTracker completely changed how I manage my money. I've saved over $5,000 in the past year just by having better visibility into my spending habits."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div class="author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Marketing Manager</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"As a small business owner, I needed a tool that could handle both my personal and business finances. FinanceTracker does this perfectly, saving me hours each month."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div class="author-info">
+                        <h4>Michael Chen</h4>
+                        <p>Small Business Owner</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The investment tracking feature has been incredibly helpful. I can finally see all my investments in one place and make better decisions based on actual data."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div class="author-info">
+                        <h4>Emily Rodriguez</h4>
+                        <p>Software Engineer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="section-heading">
+            <h2>Simple, Transparent Pricing</h2>
+            <p>Choose the plan that fits your financial needs and goals.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="price">$0 <span>/ month</span></div>
+                <ul class="pricing-features">
+                    <li>Basic budget tracking</li>
+                    <li>Connect up to 2 accounts</li>
+                    <li>Monthly financial report</li>
+                    <li>Mobile app access</li>
+                    <li>Email support</li>
+                </ul>
+                <a href="#" class="pricing-button">Get Started</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="featured-label">Most Popular</div>
+                <h3>Premium</h3>
+                <div class="price">$9.99 <span>/ month</span></div>
+                <ul class="pricing-features">
+                    <li>Advanced budget tracking</li>
+                    <li>Connect unlimited accounts</li>
+                    <li>Weekly financial reports</li>
+                    <li>Investment tracking</li>
+                    <li>Goal planning tools</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="#" class="pricing-button">Start 14-Day Trial</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Family</h3>
+                <div class="price">$19.99 <span>/ month</span></div>
+                <ul class="pricing-features">
+                    <li>Everything in Premium</li>
+                    <li>Up to 5 user accounts</li>
+                    <li>Family budget collaboration</li>
+                    <li>Shared financial goals</li>
+                    <li>Financial advisor access</li>
+                    <li>24/7 priority support</li>
+                </ul>
+                <a href="#" class="pricing-button">Start 14-Day Trial</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Finances?</h2>
+            <p>Join over 500,000 users who have taken control of their financial future with FinanceTracker.</p>
+            <a href="#" class="cta-button">Sign Up Now - Free Trial</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>FinanceTracker</h3>
+                <p>Your complete solution for personal and business financial management.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">t</a>
+                    <a href="#" class="social-icon">in</a>
+                    <a href="#" class="social-icon">ig</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Financial Tools</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 FinanceTracker. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
