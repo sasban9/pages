@@ -146,12 +146,32 @@
     
     .genre-img {
       height: 180px;
-      background-color: #333;
+      background-size: cover;
+      background-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
       color: #ddd;
+      position: relative;
+    }
+    
+    .genre-img::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    
+    .genre-img span {
+      position: relative;
+      z-index: 2;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     }
     
     .genre-content {
@@ -185,7 +205,8 @@
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background-color: #333;
+      background-size: cover;
+      background-position: center;
       margin-right: 1rem;
       flex-shrink: 0;
     }
@@ -269,10 +290,16 @@
       align-items: center;
       justify-content: center;
       transition: background-color 0.3s;
+      color: white;
+      text-decoration: none;
     }
     
     .social-link:hover {
       background-color: #1DB954;
+    }
+    
+    .social-icon {
+      font-size: 1.2rem;
     }
     
     .footer-nav {
@@ -323,6 +350,8 @@
       }
     }
   </style>
+  <!-- Add Font Awesome for social icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </head>
 <body>
   <header>
@@ -349,28 +378,36 @@
     <h2 class="section-title">Popular Genres</h2>
     <div class="genres">
       <div class="genre-card">
-        <div class="genre-img">Pop</div>
+        <div class="genre-img" style="background-image: url('/api/placeholder/400/250');">
+          <span>Pop</span>
+        </div>
         <div class="genre-content">
           <h3>Pop</h3>
           <p>Chart-topping hits that everyone knows and loves.</p>
         </div>
       </div>
       <div class="genre-card">
-        <div class="genre-img">Rock</div>
+        <div class="genre-img" style="background-image: url('/api/placeholder/400/250');">
+          <span>Rock</span>
+        </div>
         <div class="genre-content">
           <h3>Rock</h3>
           <p>From classic to alternative and everything in between.</p>
         </div>
       </div>
       <div class="genre-card">
-        <div class="genre-img">Hip Hop</div>
+        <div class="genre-img" style="background-image: url('/api/placeholder/400/250');">
+          <span>Hip Hop</span>
+        </div>
         <div class="genre-content">
           <h3>Hip Hop</h3>
           <p>Beats, rhymes, and life - the sound of the streets.</p>
         </div>
       </div>
       <div class="genre-card">
-        <div class="genre-img">Electronic</div>
+        <div class="genre-img" style="background-image: url('/api/placeholder/400/250');">
+          <span>Electronic</span>
+        </div>
         <div class="genre-content">
           <h3>Electronic</h3>
           <p>Digital soundscapes that push musical boundaries.</p>
@@ -383,42 +420,42 @@
     <h2 class="section-title">Trending Artists</h2>
     <div class="top-artists">
       <div class="artist-card">
-        <div class="artist-img"></div>
+        <div class="artist-img" style="background-image: url('/api/placeholder/200/200');"></div>
         <div class="artist-info">
           <h3>Taylor Swift</h3>
           <p>Pop, Country</p>
         </div>
       </div>
       <div class="artist-card">
-        <div class="artist-img"></div>
+        <div class="artist-img" style="background-image: url('/api/placeholder/200/200');"></div>
         <div class="artist-info">
           <h3>The Weeknd</h3>
           <p>R&B, Pop</p>
         </div>
       </div>
       <div class="artist-card">
-        <div class="artist-img"></div>
+        <div class="artist-img" style="background-image: url('/api/placeholder/200/200');"></div>
         <div class="artist-info">
           <h3>Bad Bunny</h3>
           <p>Latin, Reggaeton</p>
         </div>
       </div>
       <div class="artist-card">
-        <div class="artist-img"></div>
+        <div class="artist-img" style="background-image: url('/api/placeholder/200/200');"></div>
         <div class="artist-info">
           <h3>Billie Eilish</h3>
           <p>Alternative, Pop</p>
         </div>
       </div>
       <div class="artist-card">
-        <div class="artist-img"></div>
+        <div class="artist-img" style="background-image: url('/api/placeholder/200/200');"></div>
         <div class="artist-info">
           <h3>Drake</h3>
           <p>Hip Hop, R&B</p>
         </div>
       </div>
       <div class="artist-card">
-        <div class="artist-img"></div>
+        <div class="artist-img" style="background-image: url('/api/placeholder/200/200');"></div>
         <div class="artist-info">
           <h3>Dua Lipa</h3>
           <p>Pop, Dance</p>
@@ -440,11 +477,21 @@
   
   <footer>
     <div class="social-links">
-      <a href="#" class="social-link">FB</a>
-      <a href="#" class="social-link">TW</a>
-      <a href="#" class="social-link">IG</a>
-      <a href="#" class="social-link">YT</a>
-      <a href="#" class="social-link">SC</a>
+      <a href="#" class="social-link">
+        <i class="fab fa-facebook-f social-icon"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fab fa-twitter social-icon"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fab fa-instagram social-icon"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fab fa-youtube social-icon"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fab fa-soundcloud social-icon"></i>
+      </a>
     </div>
     <div class="footer-nav">
       <a href="#">About Us</a>
